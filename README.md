@@ -2,6 +2,8 @@
 
 Validate web app manifest (http://w3c.github.io/manifest)
 
+\* Tries to follow the Spec as it is (as much as possible)
+
 ## Install
 
 ```
