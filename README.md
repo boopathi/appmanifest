@@ -55,7 +55,7 @@ This helps in identifying possible mistakes in your manifest.json file in the fo
 
 Spec: http://w3c.github.io/manifest/#installability-signals
 
-This tools is to identify from a URL to provide you warnings about some of your app installability signals - to make it more installable - Does that even mean anything? Whatever.
+This tool is to identify from a URL, warnings about some of your app installability signals - to make it more installable - Does it even mean anything? Yes. It's a thing now. Live with it.
 
 + [ ] link associativity with manifest & contains at least `name` and a suitable icon
 + [ ] Served over HTTPS
