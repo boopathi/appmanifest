@@ -2,13 +2,34 @@
 
 Validate web app manifest (http://w3c.github.io/manifest)
 
-## Support
+## Install
 
-### Parsing
+```
+npm install appmanifest
+```
+
+## Usage
+
+Cooking ...
+
+### Node
+
+```js
+const parse = require('appmanifest/lib/manifest-parser');
+parse({
+  manifest: "<manifest json string>",
+  manifestUrl: "https://example.com/manifest.json", // this is required to validate some urls
+  documentUrl: "https://example.com/" // this is also required to validate some urls
+}); // => returns the processed manifest object
+```
+
+## Features
+
+### Processing
 
 Spec: http://w3c.github.io/manifest/#processing
 
-The parser helps in identifying possible mistakes in your manifest.json file in the following fields.
+This helps in identifying possible mistakes in your manifest.json file in the following fields.
 
 + [x] start_url
 + [x] display
