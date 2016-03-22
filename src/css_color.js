@@ -46,8 +46,8 @@ export default function css_color ({manifest, logger: _logger, key}) {
 
   // step 4
   // attempting to parse potential color as a CSS color -
-  // I don't what this means, so I'm simply returning rgba value.
-  let color = parseColor(potentialColor);
+  // I don't what this means, so I'm simply returning rgba value
+  let color = parseColor(value);
   // test one of the properties to be an array or not undefined
   if (!Array.isArray(color.rgb)) {
     logger.warn(`${key}(${potentialColor}) is not a valid color`);
