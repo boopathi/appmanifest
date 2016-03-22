@@ -35,7 +35,7 @@ export default function image_src ({image, logger: _logger}) {
   }
 
   // step 5
-  let keywords = attr_link_sizes(value);
+  let keywords = attr_link_sizes({sizesStr: value, logger: _logger});
 
   // step 6
   keywords.forEach(keyword => sizes.push(keyword.toLowerCase()));

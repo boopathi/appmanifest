@@ -6,10 +6,10 @@
 //
 import image_src from './image_src';
 import image_type from './image_type';
-import image_sizes from './image-sizes';
-import image_density from './image-density';
+import image_sizes from './image_sizes';
+import image_density from './image_density';
 
-export default function icons ({manifest, logger: _logger}) {
+export default function icons ({manifest, manifestUrl, logger: _logger}) {
 
   let logger = _logger("icons");
 
@@ -30,7 +30,7 @@ export default function icons ({manifest, logger: _logger}) {
 
     // step 3.1
     let potentialImages = unprocessedImages.filter(item => {
-      if (Object.hasOwnProperty.call(item)) return true;
+      if (item.hasOwnProperty("src")) return true;
       logger.warn(`${JSON.stringify(item)} has no field src`);
       return false;
     });
@@ -51,12 +51,12 @@ export default function icons ({manifest, logger: _logger}) {
       }
 
       // step 3.3.3
-      let image = {
+      let resultImage = {
         src: void 0, type: void 0, sizes: void 0, density: void 0
       };
 
       // step 3.3.4
-      image.src = src;
+      resultImage.src = src;
 
       // step 3.3.5
       let type = image_type({image, logger: _logger});
@@ -65,7 +65,7 @@ export default function icons ({manifest, logger: _logger}) {
       if (typeof type === "undefined")
         logger.warn(`${imgstr} - type parsing failed`);
       else
-        image.type = type;
+        resultImage.type = type;
 
       // step 3.3.7
       let sizes = image_sizes({image, logger: _logger});
@@ -74,7 +74,7 @@ export default function icons ({manifest, logger: _logger}) {
       if (typeof sizes === "undefined")
         logger.warn(`${imgstr} - sizes parsing failed`);
       else
-        image.sizes = sizes;
+        resultImage.sizes = sizes;
 
       // step 3.3.9
       let density = image_density({image, logger: _logger});
@@ -83,16 +83,16 @@ export default function icons ({manifest, logger: _logger}) {
       if (typeof density === "undefined")
         logger.warn(`${imgstr} - density parsing failed`);
       else
-        image.density = density;
+        resultImage.density = density;
 
       // step 3.3.11
-      images.push(image);
+      images.push(resultImage);
 
     });
   } else {
     // step 4
     let type = typeof unprocessedImages;
-    if ( === "undefined")
+    if (type === "undefined")
       logger.warn(`Type ${type} is not supported`);
   }
 

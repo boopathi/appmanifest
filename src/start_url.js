@@ -30,8 +30,9 @@ export default function start_url ({manifest, manifestUrl, documentUrl, logger: 
   }
 
   // step 4
+  let url;
   try {
-    let url = new URL(value, manifestUrl);
+    url = new URL(value, manifestUrl);
   } catch (e) {
     // step 5
     logger.warn(`Failed to parse URL to get start_url path - ${manifest.json} .. ${value}`);

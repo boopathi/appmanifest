@@ -13,7 +13,7 @@ export default function attr_link_sizes({sizesStr, logger: _logger}) {
   if (sizesSet.size < sizesArray.length)
     logger.warn(`Duplicate entities in sizes - ${sizesArray}`);
 
-  return sizesSet
+  return [...sizesSet]
     .filter(size => {
       if (size === "any") return true;
       let sizeEntities = size.split(/x|X/);

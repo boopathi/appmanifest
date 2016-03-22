@@ -5,10 +5,23 @@ var result = parser({
     start_url: "index.html",
     display: "fullscreen",
     orientation: "a",
-    name: "Example.com | A progressive web app"
+    name: "Example.com | A progressive web app",
+    icons: [
+      {
+        src: "./image.png",
+        sizes: "50x50 60x60"
+      }
+    ]
   }),
-  manifestUrl: "manifest.json",
+  manifestUrl: "https://www.example.com/manifest.json",
   documentUrl: "https://www.example.com"
 });
 
-console.log(result);
+var URL = require('whatwg-url').URL;
+
+function replacer (key, value) {
+  if (value instanceof URL) return value.href;
+  return value;
+}
+
+console.log(JSON.stringify(result, replacer, 2));
