@@ -1,7 +1,15 @@
+//
+//
+// Based on the algorithm defined in the spec
+// http://w3c.github.io/manifest/#dfn-steps-for-processing-the-start_url-member
+//
+//
 import {URL} from 'whatwg-url';
 import same_origin from './same_origin';
 
-export default function start_url ({manifest, manifestUrl, documentUrl, logger}) {
+export default function start_url ({manifest, manifestUrl, documentUrl, logger: _logger}) {
+
+  let logger = _logger("start_url");
 
   // step 1
   // http://w3c.github.io/manifest/#dfn-getownproperty

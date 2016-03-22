@@ -1,12 +1,18 @@
-// JS only Implementation
+//
+//
+// Based on the algorithm defined in the spec
+// http://w3c.github.io/manifest/#dfn-steps-for-processing-a-manifest
+//
+//
 import isPlainObject from "lodash.isplainobject";
 
 // sub parsers
 import start_url from "./start_url";
-import * as consoleLogger from './logger';
+import display_mode from "./display_mode";
 
-// Parsing algorithm:
-// http://w3c.github.io/manifest/#dfn-steps-for-processing-a-manifest
+// utils
+import consoleLogger from "./logger";
+
 export default function parser (opts) {
   let manifestStr = opts.manifest;
 
@@ -29,6 +35,10 @@ export default function parser (opts) {
   // start_url
   let startUrlProcessed = start_url({manifest, manifestUrl, documentUrl, logger});
 
-  return startUrlProcessed;
+  // step 6
+  // display mode
+  let displayModeProcessed = display_mode({manifest, logger});
+
+  return displayModeProcessed;
 
 }
