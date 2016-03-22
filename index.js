@@ -11,7 +11,9 @@ var result = parser({
         src: "./image.png",
         sizes: "50x50 60x60"
       }
-    ]
+    ],
+    theme_color: "black",
+    background_color: "white"
   }),
   manifestUrl: "https://www.example.com/manifest.json",
   documentUrl: "https://www.example.com"

@@ -6,9 +6,9 @@
 //
 import contentType from 'content-type';
 
-export default function image_density ({image, logger: _logger}) {
+export default function image_density ({image, logger: _logger, key}) {
 
-  let logger = _logger("icons > image_density");
+  let logger = _logger(`${key} > image_density`);
 
   // step 1
   let descriptor = Object.getOwnPropertyDescriptor(image, "density");

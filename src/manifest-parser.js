@@ -13,7 +13,9 @@ import orientation from "./orientation";
 import name from "./name";
 import lang from "./lang";
 import short_name from "./short_name";
-import icons from "./icons";
+import array_of_images from "./array_of_images";
+import scope from './scope';
+import css_color from './css_color';
 
 // utils
 import consoleLogger from "./logger";
@@ -66,8 +68,31 @@ export default function parser (opts) {
 
   // step 11
   // icons - array of images
-  processed.icons = icons({manifest, manifestUrl, logger});
+  processed.icons = array_of_images({manifest, manifestUrl, logger, key: "icons"});
 
+  // step 12
+  // splash_screens - array of images
+  processed.splash_screens = array_of_images({manifest, manifestUrl, logger, key: "splash_screens"});
+
+  // step 13
+  processed.scope = scope({manifest, manifestUrl, documentUrl, start_url: processed.start_url, logger});
+
+  // step 14
+  // TODO
+  // processed.related_applications = related_applications({manifest, logger});
+
+  // step 15
+  // TODO
+  // processed.prefer_related_applications = prefer_related_applications({manifest, logger});
+
+  // step 16
+  processed.theme_color = css_color({manifest, logger, key: "theme_color"});
+
+  // step 17
+  processed.background_color = css_color({manifest, logger, key: "background_color"});
+
+  // step 18
+  // finally
   return processed;
 
 }

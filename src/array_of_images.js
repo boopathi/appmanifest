@@ -9,17 +9,17 @@ import image_type from './image_type';
 import image_sizes from './image_sizes';
 import image_density from './image_density';
 
-export default function icons ({manifest, manifestUrl, logger: _logger}) {
+export default function icons ({key, manifest, manifestUrl, logger: _logger}) {
 
-  let logger = _logger("icons");
+  let logger = _logger(key);
 
   // step 1
   let images = [];
 
   // step 2
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "icons");
+  let descriptor = Object.getOwnPropertyDescriptor(manifest, key);
   if (typeof descriptor === "undefined") {
-    logger.warn(`icons is empty.`);
+    logger.warn(`${key} is empty.`);
     // step 2.2
     return void 0;
   }
@@ -42,7 +42,7 @@ export default function icons ({manifest, manifestUrl, logger: _logger}) {
       const imgstr = JSON.stringify(image);
 
       // step 3.2.1
-      let src = image_src({image, manifestUrl, logger: _logger});
+      let src = image_src({image, manifestUrl, logger: _logger, key});
 
       // step 3.2.2
       if (typeof src === "undefined") {
@@ -59,7 +59,7 @@ export default function icons ({manifest, manifestUrl, logger: _logger}) {
       resultImage.src = src;
 
       // step 3.3.5
-      let type = image_type({image, logger: _logger});
+      let type = image_type({image, logger: _logger, key});
 
       // step 3.3.6
       if (typeof type === "undefined")
@@ -68,7 +68,7 @@ export default function icons ({manifest, manifestUrl, logger: _logger}) {
         resultImage.type = type;
 
       // step 3.3.7
-      let sizes = image_sizes({image, logger: _logger});
+      let sizes = image_sizes({image, logger: _logger, key});
 
       // step 3.3.8
       if (typeof sizes === "undefined")
@@ -77,7 +77,7 @@ export default function icons ({manifest, manifestUrl, logger: _logger}) {
         resultImage.sizes = sizes;
 
       // step 3.3.9
-      let density = image_density({image, logger: _logger});
+      let density = image_density({image, logger: _logger, key});
 
       // step 3.3.10
       if (typeof density === "undefined")

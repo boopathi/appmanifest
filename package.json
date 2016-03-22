@@ -16,6 +16,8 @@
     "intl": "^1.1.0",
     "language-tags": "^1.0.5",
     "lodash.isplainobject": "^4.0.3",
+    "parse-color": "^1.0.0",
+    "parse-css": "^0.1.0",
     "rfc5646": "^2.0.0",
     "whatwg-url": "^1.0.1"
   },

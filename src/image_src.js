@@ -6,9 +6,9 @@
 //
 import {URL} from 'whatwg-url';
 
-export default function image_src ({image, manifestUrl, logger: _logger}) {
+export default function image_src ({image, manifestUrl, logger: _logger, key}) {
 
-  let logger = _logger("icons > image_src");
+  let logger = _logger(`${key} > image_src`);
 
   // step 1
   let descriptor = Object.getOwnPropertyDescriptor(image, "src");

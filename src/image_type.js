@@ -6,9 +6,9 @@
 //
 import contentType from 'content-type';
 
-export default function image_src ({image, logger: _logger}) {
+export default function image_src ({image, logger: _logger, key}) {
 
-  let logger = _logger("icons > image_type");
+  let logger = _logger(`${key} > image_type`);
 
   // step 1
   let descriptor = Object.getOwnPropertyDescriptor(image, "type");

@@ -6,9 +6,9 @@
 //
 import attr_link_sizes from './attr_link_sizes';
 
-export default function image_src ({image, logger: _logger}) {
+export default function image_src ({image, logger: _logger, key}) {
 
-  let logger = _logger("icons > image_sizes");
+  let logger = _logger(`${key} > image_sizes`);
 
   // step 1
   let sizes = [];
