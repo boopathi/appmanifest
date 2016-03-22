@@ -55,7 +55,7 @@ export default function parser (opts) {
 
   // step 9
   // short_name
-  processed.language = lang({manifest, })
+  // processed.language = lang({manifest, })
 
   return processed;
 

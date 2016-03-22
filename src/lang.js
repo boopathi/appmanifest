@@ -12,7 +12,7 @@
 
 // also on
 // https://github.com/andyearnshaw/Intl.js/blob/master/src/6.locales-currencies-tz.js
-import {IsStructurallyValidLanguageTag, CanonicalizeLanguageTag} from 'intl/lib/6.locales-currencies-tz';
+// import {IsStructurallyValidLanguageTag, CanonicalizeLanguageTag} from 'intl/lib/6.locales-currencies-tz';
 
 export default function orientation ({manifest, logger: _logger}) {
 
