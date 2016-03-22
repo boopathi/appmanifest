@@ -23,6 +23,10 @@ parse({
 }); // => returns the processed manifest object
 ```
 
+### Browser
+
+Still cooking...
+
 ## Features
 
 ### Processing
