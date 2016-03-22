@@ -1,18 +1,18 @@
 //
 //
 // Based on the algorithm defined in the spec
-// http://w3c.github.io/manifest/#dfn-steps-for-processing-the-name-member
+// http://w3c.github.io/manifest/#dfn-steps-for-processing-the-short_name-member
 //
 //
 
-export default function name ({manifest, logger: _logger}) {
+export default function short_name ({manifest, logger: _logger}) {
 
-  let logger = _logger("name");
+  let logger = _logger("short_name");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "name");
+  let descriptor = Object.getOwnPropertyDescriptor(manifest, "short_name");
   if (typeof descriptor === "undefined") {
-    logger.warn(`name is empty.`);
+    logger.warn(`short_name is empty.`);
     // step 2.2
     return void 0;
   }

@@ -12,6 +12,8 @@ import display from "./display";
 import orientation from "./orientation";
 import name from "./name";
 import lang from "./lang";
+import short_name from "./short_name";
+import icons from "./icons";
 
 // utils
 import consoleLogger from "./logger";
@@ -53,9 +55,18 @@ export default function parser (opts) {
   // name
   processed.name = name({manifest, logger});
 
+  // TODO
   // step 9
-  // short_name
+  // lang
   // processed.language = lang({manifest, })
+
+  // step 10
+  // short_name
+  processed.short_name = short_name({manifest, logger});
+
+  // step 11
+  // icons - array of images
+  processed.icons = icons({manifest, manifestUrl, logger});
 
   return processed;
 

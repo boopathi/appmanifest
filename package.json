@@ -12,6 +12,7 @@
   "author": "boopathi",
   "license": "MIT",
   "dependencies": {
+    "content-type": "^1.0.1",
     "intl": "^1.1.0",
     "language-tags": "^1.0.5",
     "lodash.isplainobject": "^4.0.3",
