@@ -49,6 +49,8 @@ This helps in identifying possible mistakes in your manifest.json file in the fo
 + [x] theme_color
 + [x] background_color
 
+\* The unchecked ones are not yet implemented
+
 ### Installability Signals
 
 Spec: http://w3c.github.io/manifest/#installability-signals
@@ -58,6 +60,8 @@ This tools is to identify from a URL to provide you warnings about some of your 
 + [ ] link associativity with manifest & contains at least `name` and a suitable icon
 + [ ] Served over HTTPS
 + [ ] CSP
+
+\* The unchecked ones are not yet implemented
 
 Note: There are a few others that cannot be checked with this tool. Feel free to visit the link mentioned above to help making your manifests better and give the browser possible installability signals.
 
