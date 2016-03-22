@@ -9,6 +9,7 @@ import isPlainObject from "lodash.isplainobject";
 // sub parsers
 import start_url from "./start_url";
 import display_mode from "./display_mode";
+import orientation from "./orientation";
 
 // utils
 import consoleLogger from "./logger";
@@ -39,6 +40,10 @@ export default function parser (opts) {
   // display mode
   let displayModeProcessed = display_mode({manifest, logger});
 
-  return displayModeProcessed;
+  // step 7
+  // orientation
+  let orientationProcessed = orientation({manifest, display: displayModeProcessed, logger});
+
+  return orientationProcessed;
 
 }
