@@ -17,27 +17,27 @@ const displayModes = {
 
 export default function display ({manifest, logger: _logger}) {
 
-  let logger = _logger("display");
+  const logger = _logger("display");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "display");
+  const descriptor = Object.getOwnPropertyDescriptor(manifest, "display");
   if (typeof descriptor === "undefined") {
     logger.warn(`display is empty. Using defaultDisplayMode - browser`);
     return "browser";
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 2
-  let type = typeof value;
-  let trimmedValue = String.prototype.trim.call(value);
-  let supported = Object.keys(displayModes).indexOf(trimmedValue) !== -1;
+  const type = typeof value;
+  const trimmedValue = String.prototype.trim.call(value);
+  const supported = Object.keys(displayModes).indexOf(trimmedValue) !== -1;
   if (type !== "string" || !supported) {
     // step 2.1
     if (type !== "undefined" && type !== "string")
-      logger.warn(`Type ${typeof value} is not supported`);
+      logger.warn(`Type ${type} is not supported`);
     // step 2.2
     if (!supported)
-      logger.warn(`display mode is not supported. Using defaultDisplayMode - browser`);
+      logger.error(`display mode is not supported. Using defaultDisplayMode - browser`);
     // step 2.3
     // http://w3c.github.io/manifest/#dfn-fallback-display-mode
     return "browser";

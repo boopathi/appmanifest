@@ -7,19 +7,19 @@
 
 export default function short_name ({manifest, logger: _logger}) {
 
-  let logger = _logger("short_name");
+  const logger = _logger("short_name");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "short_name");
+  const descriptor = Object.getOwnPropertyDescriptor(manifest, "short_name");
   if (typeof descriptor === "undefined") {
     logger.warn(`short_name is empty.`);
     // step 2.2
     return void 0;
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 2
-  let type = typeof value;
+  const type = typeof value;
   if (type !== "string") {
     // step 2.1
     if (type !== "undefined")

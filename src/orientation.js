@@ -20,19 +20,19 @@ const OrientationLockTypeEnum = [
 
 export default function orientation ({manifest, display, logger: _logger}) {
 
-  let logger = _logger("orientation");
+  const logger = _logger("orientation");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "orientation");
+  const descriptor = Object.getOwnPropertyDescriptor(manifest, "orientation");
   if (typeof descriptor === "undefined") {
     logger.warn(`Orientation is empty.`);
     // step 2.2
     return "";
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 2
-  let type = typeof value;
+  const type = typeof value;
   if (type !== "string") {
     // step 2.1
     if (type !== "undefined")
@@ -43,13 +43,13 @@ export default function orientation ({manifest, display, logger: _logger}) {
 
   // step 3
   // trim value
-  let result = String.prototype.trim.call(value);
+  const result = String.prototype.trim.call(value);
 
   // step 4
-  let supported = OrientationLockTypeEnum.indexOf(result) !== -1;
+  const supported = OrientationLockTypeEnum.indexOf(result) !== -1;
   if (!supported) {
-    logger.warn(`OrientationLockType is not supported. It should be one of -`);
-    logger.warn(`${OrientationLockTypeEnum.toString()}`);
+    logger.error(`OrientationLockType is not supported. It should be one of -
+${OrientationLockTypeEnum.toString()}`);
     // step 4.2
     return "";
   }

@@ -10,19 +10,19 @@ import within_scope from './within_scope';
 
 export default function scope ({manifest, manifestUrl, documentUrl, start_url, logger: _logger}) {
 
-  let logger = _logger("scope");
+  const logger = _logger("scope");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "scope");
+  const descriptor = Object.getOwnPropertyDescriptor(manifest, "scope");
   if (typeof descriptor === "undefined") {
     logger.warn(`scope is empty`);
     // step 3.2
     return void 0;
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 2
-  let type = typeof value;
+  const type = typeof value;
 
   // step 3
   if (type !== "string") {
