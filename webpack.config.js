@@ -40,7 +40,8 @@ module.exports = function (opts) {
           // and UglifyJs doesn't support ES6 yet
           // exclude: /node_modules/,
           query: {
-            presets: ['es2015-webpack']
+            presets: ['es2015-webpack'],
+            compact: false
           }
         }
       ]
