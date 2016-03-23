@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8"/>
     <title>App Manifest</title>
     <link rel="stylesheet" href="https://npmcdn.com/jsoneditor@5.2.0/dist/jsoneditor.min.css"/>
+    <link rel="stylesheet" href="gh-pages/styles.css"/>
   </head>
   <body>
-    <div id="container">
-      <div><div id="manifest-json" style="width: 400px; height: 400px;"></div></div>
-      <div><input type='button' value='submit' id='submit'/></div>
-      <div id="results"></div>
+    <div class="container">
+      <div class="flex-left">
+        <div id="manifest-json"></div>
+      </div>
+      <div class="flex-right">
+        <div id="results">
+        </div>
+      </div>
+    </div>
+    <div class="tools">
+      <div class="button button-dark" id="submit">
+        ►
+      </div>
     </div>
     <script src="https://npmcdn.com/redux@latest/dist/redux.min.js" defer></script>
     <script src="https://npmcdn.com/jsoneditor@5.2.0/dist/jsoneditor.min.js" defer></script>

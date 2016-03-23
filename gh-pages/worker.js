@@ -13,7 +13,6 @@ self.onmessage = function(e) {
     };
   }
 
-  console.log(action.data);
   let processedManifest;
 
   switch (action.type) {

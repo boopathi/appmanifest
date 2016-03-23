@@ -61,8 +61,8 @@ function webWorkerMiddlewareFactory (scriptUrl) {
       type: 'MANIFEST_JSON',
       data: {
         manifest: JSON.stringify(editor.get()),
-        manifestUrl: 'https://boopathi.com/manifest.json',
-        documentUrl: 'https://boopathi.com/'
+        manifestUrl: 'https://example.com/manifest.json',
+        documentUrl: 'https://example.com/'
       },
       // this is how I understand an action that needs to be sent to worker
       worker: true
