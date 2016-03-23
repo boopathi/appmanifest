@@ -23,7 +23,7 @@ import consoleLogger from "./logger";
 export default function manifestParser (opts) {
   const manifestStr = opts.manifest;
 
-  const {manifestUrl, documentUrl, logger: _logger} = opts;
+  let {manifestUrl, documentUrl, logger: _logger} = opts;
 
   if (typeof _logger === "undefined")
     _logger = consoleLogger;
