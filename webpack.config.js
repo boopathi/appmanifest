@@ -20,6 +20,10 @@ const minify = new webpack.optimize.UglifyJsPlugin({
   }
 });
 
+const defn = new webpack.DefinePlugin({
+  "process.env": JSON.stringify("production")
+});
+
 module.exports = function (opts) {
   return {
     entry: './src/index.js',
@@ -42,6 +46,7 @@ module.exports = function (opts) {
       ]
     },
     plugins: [
+      defn,
       minify
     ]
   };
