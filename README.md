@@ -12,22 +12,53 @@ npm install appmanifest
 
 ## Usage
 
-Cooking ...
+### API
+
+```js
+// result is the processed manifest object
+var result = manifestParser({
+  manifest: "<manifest json string>",
+  manifestUrl: "https://example.com/manifest.json", // this is required to validate some urls
+  documentUrl: "https://example.com/" // this is also required to validate some urls
+  logger: function() { return { warn() {}, error(){}, log(){} } } // optional
+});
+```
+
+If you don't want to pass manifestUrl and documentUrl, just use `example.com` urls as mentioned above.
+
+#### Capture errors and warnings
+
+You can pass your custom logger and capture all errors and warnings to compile and display later. The signature of the logger function is this.
+
+```js
+function Logger (name /* name of the param currently validated */) {
+  return {
+    warn(message) {
+      // do your stuff
+    },
+    error (message) {
+      // do your stuff
+    },
+    log (message) {
+      // do your stuff
+    }
+  }
+}
+```
 
 ### Node
 
 ```js
-const parse = require('appmanifest/lib/manifest-parser');
-parse({
-  manifest: "<manifest json string>",
-  manifestUrl: "https://example.com/manifest.json", // this is required to validate some urls
-  documentUrl: "https://example.com/" // this is also required to validate some urls
-}); // => returns the processed manifest object
+const parse = require('appmanifest').manifestParser;
 ```
 
 ### Browser
 
-Still cooking...
+1. You can bundle this with webpack / browserify
+2. Generate your dist - `npm run dist`
+3. Get it from CDN - https://npmcdn.com/appmanifest@latest/dist/appmanifest.min.js
+
+The library when obtained as a built bundle, exports UMD with `AppManifest` as the name.
 
 ## Features
 
@@ -66,6 +97,12 @@ This tool is to identify from a URL, warnings about some of your app installabil
 \* The unchecked ones are not yet implemented
 
 Note: There are a few others that cannot be checked with this tool. Feel free to visit the link mentioned above to help making your manifests better and give the browser possible installability signals.
+
+### CONTRIBUTING
+
+Contributions and ideas are always welcome. Create an issue to discuss.
+
+#### Build
 
 ### License
 
