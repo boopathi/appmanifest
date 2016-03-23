@@ -8,23 +8,23 @@ import contentType from 'content-type';
 
 export default function image_density ({image, logger: _logger, key}) {
 
-  let logger = _logger(`${key} > image_density`);
+  const logger = _logger(key, "image_density");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(image, "density");
+  const descriptor = Object.getOwnPropertyDescriptor(image, "density");
   if (typeof descriptor === "undefined") {
     logger.warn(`image density is empty.`);
     // step 1.0
     return false;
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 3
-  let result = parseFloat(value);
+  const result = parseFloat(value);
 
   // step 4
   if (result === NaN || result === Infinity || result < 0) {
-    logger.warn(`density = ${result}`);
+    logger.error(`density = ${result}`);
     // step 4.2
     return false;
   }

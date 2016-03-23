@@ -14,21 +14,21 @@
 // https://github.com/andyearnshaw/Intl.js/blob/master/src/6.locales-currencies-tz.js
 // import {IsStructurallyValidLanguageTag, CanonicalizeLanguageTag} from 'intl/lib/6.locales-currencies-tz';
 
-export default function orientation ({manifest, logger: _logger}) {
+export default function lang ({manifest, logger: _logger}) {
 
-  let logger = _logger("lang");
+  const logger = _logger("lang");
 
   // step 1
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, "lang");
+  const descriptor = Object.getOwnPropertyDescriptor(manifest, "lang");
   if (typeof descriptor === "undefined") {
     logger.warn(`name is empty.`);
     // step 2.2
     return void 0;
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 2
-  let type = typeof value;
+  const type = typeof value;
   if (type !== "string") {
     // step 2.1
     if (type !== "undefined")
@@ -39,7 +39,7 @@ export default function orientation ({manifest, logger: _logger}) {
 
   // step 3
   // trim value
-  let tag = String.prototype.trim.call(value);
+  const tag = String.prototype.trim.call(value);
 
   // step 4
   if (!IsStructurallyValidLanguageTag(tag)) {

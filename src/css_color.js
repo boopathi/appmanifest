@@ -10,20 +10,20 @@ import parseColor from 'parse-color';
 
 export default function css_color ({manifest, logger: _logger, key}) {
 
-  let logger = _logger(key);
+  const logger = _logger(key);
 
   // step 1
   // http://w3c.github.io/manifest/#dfn-getownproperty
-  let descriptor = Object.getOwnPropertyDescriptor(manifest, key);
+  const descriptor = Object.getOwnPropertyDescriptor(manifest, key);
   if (typeof descriptor === "undefined") {
     logger.warn(`${key} is empty`);
     // step 2.2
     return void 0;
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 2
-  let type = typeof value;
+  const type = typeof value;
   if (type !== 'string') {
     // step 2.1
     if (type !== 'undefined')
@@ -38,7 +38,7 @@ export default function css_color ({manifest, logger: _logger, key}) {
     potentialColor = parseAComponentValue(value);
   } catch(e) {
     if (e instanceof SyntaxError) {
-      logger.warn(`Failed parsing ${key} - ${potentialColor}`);
+      logger.error(`Failed parsing ${key} - ${potentialColor}`);
       return void 0;
     }
     throw e;
@@ -47,10 +47,10 @@ export default function css_color ({manifest, logger: _logger, key}) {
   // step 4
   // attempting to parse potential color as a CSS color -
   // I don't what this means, so I'm simply returning rgba value
-  let color = parseColor(value);
+  const color = parseColor(value);
   // test one of the properties to be an array or not undefined
   if (!Array.isArray(color.rgb)) {
-    logger.warn(`${key}(${potentialColor}) is not a valid color`);
+    logger.error(`${key}(${potentialColor}) is not a valid color`);
     return void 0;
   }
 

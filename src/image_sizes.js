@@ -4,26 +4,26 @@
 // http://w3c.github.io/manifest/#dfn-steps-for-processing-a-sizes-member-of-an-image
 //
 //
-import attr_link_sizes from './attr_link_sizes';
+import attr_link_sizes from "./attr_link_sizes";
 
-export default function image_src ({image, logger: _logger, key}) {
+export default function image_sizes ({image, logger: _logger, key}) {
 
-  let logger = _logger(`${key} > image_sizes`);
+  const logger = _logger(key, "image_sizes");
 
   // step 1
-  let sizes = [];
+  const sizes = [];
 
   // step 2
-  let descriptor = Object.getOwnPropertyDescriptor(image, "sizes");
+  const descriptor = Object.getOwnPropertyDescriptor(image, "sizes");
   if (typeof descriptor === "undefined") {
     logger.warn(`image sizes is empty.`);
     // step 4.2
     return void 0;
   }
-  let {value} = descriptor;
+  const {value} = descriptor;
 
   // step 3
-  let type = typeof value;
+  const type = typeof value;
 
   // step 4
   if (type !== "string") {
@@ -35,7 +35,7 @@ export default function image_src ({image, logger: _logger, key}) {
   }
 
   // step 5
-  let keywords = attr_link_sizes({sizesStr: value, logger: _logger});
+  const keywords = attr_link_sizes({sizesStr: value, logger: _logger});
 
   // step 6
   keywords.forEach(keyword => sizes.push(keyword.toLowerCase()));

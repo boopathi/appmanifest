@@ -25,12 +25,12 @@ const defn = new webpack.DefinePlugin({
 });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/manifest-parser.js',
   output: {
     pathinfo: true,
     path: './dist',
-    filename: 'appmanifest.min.js',
-    library: 'AppManifest',
+    filename: 'manifest-parser.min.js',
+    library: 'ManifestParser',
     libraryTarget: 'umd'
   },
   devtool: 'source-map',
@@ -43,7 +43,7 @@ module.exports = {
         // and UglifyJs doesn't support ES6 yet
         // exclude: /node_modules/,
         query: {
-          presets: ['es2015'],
+          presets: ['es2015-loose'],
           compact: false
         }
       },

@@ -1,4 +1,5 @@
-const header = s => {
+const header = (s) => {
+  s = s.toString();
   const len = 25;
   const shortname = s.substring(0, len);
   let result = shortname;
@@ -7,16 +8,16 @@ const header = s => {
   return `### ${result} :`;
 };
 
-export default function consoleLogger(title) {
+export default function consoleLogger(...title) {
   return {
     warn(...args) {
-      console.warn(header(title), ...args);
+      console.warn(header(...title), ...args);
     },
     error(...args) {
-      console.error(header(title), ...args);
+      console.error(header(...title), ...args);
     },
     log(...args) {
-      console.log(header(title), ...args);
+      console.log(header(...title), ...args);
     },
   };
 }

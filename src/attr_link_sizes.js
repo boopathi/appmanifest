@@ -4,9 +4,9 @@
 // https://html.spec.whatwg.org/#attr-link-sizes
 //
 //
-export default function attr_link_sizes({sizesStr, logger: _logger}) {
+export default function attr_link_sizes ({sizesStr, logger: _logger}) {
 
-  let logger = _logger("icons > image_sizes > attr_link_sizes");
+  const logger = _logger("icons", "image_sizes", "attr_link_sizes");
 
   const sizesArray = sizesStr.split(/\s/);
   const sizesSet = new Set(sizesArray);

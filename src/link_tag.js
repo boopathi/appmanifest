@@ -16,18 +16,18 @@ function searchAst (element, match) {
 
 export default function link_tag ({indexHtml, logger: _logger}) {
 
-  let logger = _logger("installability > link_tag");
+  const logger = _logger("installability > link_tag");
 
-  let documentRoot = parse(indexHtml);
+  const documentRoot = parse(indexHtml);
 
   let link = searchAst(documentRoot, function match(element) {
     if (element.nodeName !== "link") return false;
 
-    let rel = element.attrs.filter(attr => attr.name === "rel");
+    const rel = element.attrs.filter(attr => attr.name === "rel");
     if (rel.length < 1) return false;
     if (rel[0].value !== "manifest") return false;
 
-    let href = element.attrs.filter(attr => attr.name === "href");
+    const href = element.attrs.filter(attr => attr.name === "href");
     if (href.length < 1) return false;
     if (href[0].value.trim() === "") return false;
 
@@ -35,7 +35,7 @@ export default function link_tag ({indexHtml, logger: _logger}) {
   });
 
   if (link === null) {
-    logger.warn(`No Link tag with rel=manifest and href=<url> found`);
+    logger.error(`No Link tag with rel=manifest and href=<url> found`);
     return void 0;
   }
 
