@@ -1,4 +1,4 @@
-importScripts('/dist/appmanifest.min.js');
+importScripts('../dist/appmanifest.min.js');
 
 self.onmessage = function(e) {
   'use strict';
