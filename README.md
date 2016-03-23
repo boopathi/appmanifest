@@ -56,7 +56,7 @@ const parse = require('appmanifest').manifestParser;
 
 1. You can bundle this with webpack / browserify
 2. Generate your dist - `npm run dist`
-3. Get it from CDN - https://npmcdn.com/appmanifest@0.0.1/dist/appmanifest.min.js
+3. Get it from CDN - https://npmcdn.com/appmanifest@latest/dist/appmanifest.min.js
 
 The library when obtained as a built bundle, exports UMD with `AppManifest` as the name.
 
