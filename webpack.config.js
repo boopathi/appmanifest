@@ -29,7 +29,9 @@ module.exports = function (opts) {
     entry: './src/index.js',
     output: {
       path: './dist',
-      filename: 'appmanifest.min.js'
+      filename: 'appmanifest.min.js',
+      library: 'AppManifest',
+      libraryTarget: 'umd'
     },
     module: {
       loaders: [
