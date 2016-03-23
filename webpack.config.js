@@ -24,33 +24,37 @@ const defn = new webpack.DefinePlugin({
   "process.env": JSON.stringify("production")
 });
 
-module.exports = function (opts) {
-  return {
-    entry: './src/index.js',
-    output: {
-      path: './dist',
-      filename: 'appmanifest.min.js',
-      library: 'AppManifest',
-      libraryTarget: 'umd'
-    },
-    module: {
-      loaders: [
-        {
-          test: /\.js$/,
-          loader: 'babel',
-          // not yet because some node_modules are ES6
-          // and UglifyJs doesn't support ES6 yet
-          // exclude: /node_modules/,
-          query: {
-            presets: ['es2015-webpack'],
-            compact: false
-          }
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    pathinfo: true,
+    path: './dist',
+    filename: 'appmanifest.min.js',
+    library: 'AppManifest',
+    libraryTarget: 'umd'
+  },
+  devtool: 'source-map',
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        // not yet because some node_modules are ES6
+        // and UglifyJs doesn't support ES6 yet
+        // exclude: /node_modules/,
+        query: {
+          presets: ['es2015'],
+          compact: false
         }
-      ]
-    },
-    plugins: [
-      defn,
-      minify
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      }
     ]
-  };
-}
+  },
+  plugins: [
+    defn,
+    minify
+  ]
+};
