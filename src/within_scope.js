@@ -26,7 +26,7 @@ export default function within_scope({targetUrl, scopeUrl, logger: _logger}) {
   }
 
   // step 3 & 4 - modified to provide better warnings
-  if (!same_origin(targetUrl, scopeUrl)) {
+  if (!same_origin(target, scopeUrl)) {
     logger.error(`targetUrl("${targetUrl}") must be the same origin as scopeUrl("${scopeUrl}")`);
     return false;
   }

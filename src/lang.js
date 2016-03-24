@@ -42,12 +42,15 @@ export default function lang ({manifest, logger: _logger}) {
   const tag = String.prototype.trim.call(value);
 
   // step 4
-  if (!IsStructurallyValidLanguageTag(tag)) {
-    logger.warn(`The value - "${tag}" is invalid`);
-    return void 0;
-  }
+  // TODO
+  // if (!IsStructurallyValidLanguageTag(tag)) {
+  //   logger.warn(`The value - "${tag}" is invalid`);
+  //   return void 0;
+  // }
 
   // step 5
-  return CanonicalizeLanguageTag(tag);
+  // TODO
+  // return CanonicalizeLanguageTag(tag);
+  return tag;
 
 }

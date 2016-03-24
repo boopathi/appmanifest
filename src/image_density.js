@@ -4,8 +4,6 @@
 // http://w3c.github.io/manifest/#dfn-steps-for-processing-a-density-member-of-an-image
 //
 //
-import contentType from 'content-type';
-
 export default function image_density ({image, logger: _logger, key}) {
 
   const logger = _logger(key, "image_density");
@@ -23,7 +21,7 @@ export default function image_density ({image, logger: _logger, key}) {
   const result = parseFloat(value);
 
   // step 4
-  if (result === NaN || result === Infinity || result < 0) {
+  if (isNaN(result) || result === Infinity || result < 0) {
     logger.error(`density = ${result}`);
     // step 4.2
     return false;
