@@ -27,7 +27,8 @@ self.addEventListener('activate', function(event) {
   event.waitUntil(self.clients.claim());
 });
 
-toolbox.router.get('/', toolbox.cacheFirst);
-toolbox.router.get('/gh-pages/*', toolbox.cacheFirst);
-toolbox.router.get('/dist/*', toolbox.cacheFirst);
+
+toolbox.router.get('gh-pages/*', toolbox.cacheFirst);
+toolbox.router.get('dist/*', toolbox.cacheFirst);
 toolbox.router.get('/*', toolbox.cacheFirst, {origin: 'https://npmcdn.com'});
+toolbox.router.get('/*', toolbox.cacheFirst);
