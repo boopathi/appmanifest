@@ -60,12 +60,16 @@ function webWorkerMiddlewareFactory (scriptUrl) {
       } catch (e) {
         // People are going to hate me for this
         resultLogs.innerHTML = "<ul><li class=error>ERROR PARSING JSON</li></ul>";
+        ga('send', 'exception', {
+          exDescription: e.name,
+          exFatal: false
+        });
         return;
       }
       store.dispatch({
         type: 'MANIFEST_JSON',
         data: {
-          manifest: JSON.stringify(editor.get()),
+          manifest: JSON.stringify(json),
           manifestUrl: 'https://www.example.com/manifest.json',
           documentUrl: 'https://www.example.com'
         },
@@ -81,6 +85,7 @@ function webWorkerMiddlewareFactory (scriptUrl) {
 
   submit.addEventListener('click', function(e) {
     e.preventDefault();
+    ga('send', 'event', 'RunButton', 'run');
     store.dispatch({
       type: 'MANIFEST_JSON',
       data: {
