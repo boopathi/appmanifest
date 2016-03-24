@@ -26,7 +26,7 @@ export default function start_url ({manifest, manifestUrl, documentUrl, logger: 
     if (type !== 'undefined')
       logger.warn(`Type ${type} is not supported for start_url`);
     logger.warn(`start_url is empty. Using documentUrl - ${documentUrl}`);
-    return new URL(documentURL);
+    return new URL(documentUrl);
   }
 
   // step 4
