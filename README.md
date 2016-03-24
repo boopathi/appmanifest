@@ -8,6 +8,8 @@ Try it online -
 
 https://boopathi.in/appmanifest/
 
+This project is still under active development. Ideas and contributions welcome :)
+
 ## Install
 
 ```
