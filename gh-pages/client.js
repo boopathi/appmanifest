@@ -51,7 +51,27 @@ function webWorkerMiddlewareFactory (scriptUrl) {
   const results = document.getElementById('results');
 
   const editor = new JSONEditor(manifestJson, {
-    mode: "code"
+    mode: "code",
+    onChange: function() {
+      let json;
+      try {
+        json = editor.get();
+      } catch (e) {
+        // People are going to hate me for this
+        results.innerHTML = "<ul><li class=error>ERROR PARSING JSON</li></ul>";
+        console.log(e);
+        return;
+      }
+      store.dispatch({
+        type: 'MANIFEST_JSON',
+        data: {
+          manifest: JSON.stringify(editor.get()),
+          manifestUrl: 'https://www.example.com/manifest.json',
+          documentUrl: 'https://www.example.com'
+        },
+        worker: true
+      });
+    }
   });
   editor.set({});
 
@@ -83,12 +103,18 @@ function webWorkerMiddlewareFactory (scriptUrl) {
     if (internalDOMState.nResults === state.length) return;
 
     internalDOMState.nResults++;
-    let warnings = state[state.length-1].warnings;
-    warnings.forEach(w => {
-      let li = document.createElement('li');
-      li.innerText = w;
-      r.appendChild(li);
-    });
+    let result = state[state.length-1];
+    result.errors.forEach(e => r.appendChild(createLog('error', e)));
+    result.warnings.forEach(w => r.appendChild(createLog('warning', w)));
+    result.logs.forEach(l => r.appendChild(createLog('info', l)));
+    results.innerHTML = "";
     results.appendChild(r);
   });
+
+  function createLog(className, text) {
+    let li = document.createElement('li');
+    li.innerText = text;
+    li.className = className;
+    return li;
+  }
 })();

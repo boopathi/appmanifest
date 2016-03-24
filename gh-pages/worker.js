@@ -1,4 +1,4 @@
-importScripts('../dist/appmanifest.min.js');
+importScripts('../dist/manifest-parser.min.js');
 
 self.onmessage = function(e) {
   'use strict';
@@ -9,7 +9,7 @@ self.onmessage = function(e) {
     return {
       log(m) { logs.push(m); },
       warn(m) { warnings.push(m); },
-      error(m) { errors.push(e); }
+      error(m) { errors.push(m); }
     };
   }
 
@@ -17,7 +17,7 @@ self.onmessage = function(e) {
 
   switch (action.type) {
     case 'MANIFEST_JSON':
-      processedManifest = AppManifest.manifestParser(Object.assign({
+      processedManifest = ManifestParser.default(Object.assign({
         logger: logger
       }, action.data));
       break;

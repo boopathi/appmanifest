@@ -7,6 +7,7 @@
     "build": "babel src -d lib",
     "watch": "babel src -d lib -w",
     "dist": "webpack --config webpack.config.js",
+    "gh-pages": "babel gh-pages/ -d gh-pages-dist -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
