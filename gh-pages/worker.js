@@ -25,6 +25,13 @@ self.onmessage = function(e) {
       // TODO
   }
 
+  processedManifest = JSON.parse(JSON.stringify(processedManifest, UrlReplacer));
+
+  function UrlReplacer (key, value) {
+    if (value && typeof value.href !== 'undefined') return value.href;
+    return value;
+  }
+
   postMessage({
     type: 'MANIFEST_RESULT',
     data: { logs, errors, warnings, result: processedManifest }

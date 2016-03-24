@@ -123,11 +123,6 @@ function webWorkerMiddlewareFactory (scriptUrl) {
 
   });
 
-  function UrlReplacer (key, value) {
-    if (value && typeof value.href !== 'undefined') return value.href;
-    return value;
-  }
-
   function createLog(className, text) {
     let li = document.createElement('li');
     li.innerText = text;
