@@ -11,6 +11,7 @@ var resources = [
   'gh-pages/client.js',
   'gh-pages/worker.js',
   'gh-pages/styles.css',
+  'sw.js',
   'gh-pages/sw-toolbox.js',
 
   'https://npmcdn.com/jsoneditor@5.2.0/dist/jsoneditor.min.css',
