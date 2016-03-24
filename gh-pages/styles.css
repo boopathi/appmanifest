@@ -46,12 +46,11 @@ html,body {
   border-bottom: 1px solid #3883fa;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.right-side-top-bar button {
-  width: 40px;
+.right-side-top-bar .top-bar-element {
   background: none;
   color: #dddddd;
   border: solid 1px #dddddd;
@@ -59,12 +58,17 @@ html,body {
   vertical-align: middle;
   outline: none;
   font-size: 14px;
+  line-height: 17px;
+  padding: 3px;
+  margin: 0 10px;
+  text-decoration: none;
+  cursor: pointer;
 }
-.right-side-top-bar button:hover {
+.right-side-top-bar .top-bar-element:hover {
   border: solid 1px white;
   color: white;
 }
-.right-side-top-bar button:active {
+.right-side-top-bar .top-bar-element:active {
   background: rgba(255, 255, 255, 0.2);
 }
 .results-container {
