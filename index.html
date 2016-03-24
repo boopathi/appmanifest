@@ -9,7 +9,11 @@
   <body>
     <div class="container">
       <div class="flex-left">
-        <div class="json-editor" id="manifest-json"></div>
+        <div class="json-editor" id="manifest-json">
+          <div class="editor-title">
+            manifest.json
+          </div>
+        </div>
       </div>
       <div class="flex-right">
         <div class="right-side-container">
@@ -17,7 +21,12 @@
             <button id="submit">Run</button>
           </div>
           <div class="results-container">
-            <div id="results"></div>
+            <div id="result-logs"></div>
+            <div id="result-json">
+              <div class="editor-title">
+                Processed Manifest
+              </div>
+            </div>
           </div>
         </div>
       </div>

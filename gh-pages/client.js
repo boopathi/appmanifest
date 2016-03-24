@@ -48,7 +48,8 @@ function webWorkerMiddlewareFactory (scriptUrl) {
   // the view stuff
   const manifestJson = document.getElementById('manifest-json');
   const submit = document.getElementById('submit');
-  const results = document.getElementById('results');
+  const resultLogs = document.getElementById('result-logs');
+  const resultJson = document.getElementById('result-json');
 
   const editor = new JSONEditor(manifestJson, {
     mode: "code",
@@ -58,8 +59,7 @@ function webWorkerMiddlewareFactory (scriptUrl) {
         json = editor.get();
       } catch (e) {
         // People are going to hate me for this
-        results.innerHTML = "<ul><li class=error>ERROR PARSING JSON</li></ul>";
-        console.log(e);
+        resultLogs.innerHTML = "<ul><li class=error>ERROR PARSING JSON</li></ul>";
         return;
       }
       store.dispatch({
@@ -74,6 +74,10 @@ function webWorkerMiddlewareFactory (scriptUrl) {
     }
   });
   editor.set({});
+
+  const resultEditor = new JSONEditor(resultJson, {
+    mode: 'code'
+  });
 
   submit.addEventListener('click', function(e) {
     e.preventDefault();
@@ -107,9 +111,17 @@ function webWorkerMiddlewareFactory (scriptUrl) {
     result.errors.forEach(e => r.appendChild(createLog('error', e)));
     result.warnings.forEach(w => r.appendChild(createLog('warning', w)));
     result.logs.forEach(l => r.appendChild(createLog('info', l)));
-    results.innerHTML = "";
-    results.appendChild(r);
+    resultLogs.innerHTML = "";
+    resultLogs.appendChild(r);
+
+    resultEditor.set(result.result);
+
   });
+
+  function UrlReplacer (key, value) {
+    if (value && typeof value.href !== 'undefined') return value.href;
+    return value;
+  }
 
   function createLog(className, text) {
     let li = document.createElement('li');
@@ -117,4 +129,5 @@ function webWorkerMiddlewareFactory (scriptUrl) {
     li.className = className;
     return li;
   }
+
 })();

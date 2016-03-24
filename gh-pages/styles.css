@@ -19,6 +19,9 @@ html,body {
   width: 100%;
   height: 100%;
 }
+.jsoneditor-poweredBy {
+  display: none;
+}
 
 .right-side-container {
   color: #1A1A1A;
@@ -41,20 +44,80 @@ html,body {
   color: #fff;
   background-color: #3883fa;
   border-bottom: 1px solid #3883fa;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-#results {
+.right-side-top-bar button {
+  width: 40px;
+  background: none;
+  color: #dddddd;
+  border: solid 1px #dddddd;
+  border-radius: 2px;
+  vertical-align: middle;
+  outline: none;
+  font-size: 14px;
+}
+.right-side-top-bar button:hover {
+  border: solid 1px white;
+  color: white;
+}
+.right-side-top-bar button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+.results-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.results-container > div {
+  flex: 1;
+  height: 50%;
+}
+
+#result-logs {
   overflow-y: scroll;
 }
 
-#results li.error {
+#result-logs ul {
+  list-style: none;
+}
+
+#result-logs li {
+  line-height: 30px;
+}
+
+#result-logs li.error {
   color: red;
 }
-#results li.warning {
+#result-logs li.error:before {
+  content: '×';
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}
+#result-logs li.warning {
   color: orange;
 }
-#results li.info {
+#result-logs li.warning:before {
+  content: '⚠';
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}
+#result-logs li.info {
   color: blue;
+}
+
+.editor-title {
+  position: absolute;
+  z-index: 99;
+  text-align: center;
+  line-height: 36px;
+  color: white;
+  margin-left: 70px;
 }
 
 .tools {
