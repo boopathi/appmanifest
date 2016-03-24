@@ -131,3 +131,15 @@ function webWorkerMiddlewareFactory (scriptUrl) {
   }
 
 })();
+
+
+(function() {
+  'use strict';
+
+  if (navigator.serviceWorker)
+    navigator
+      .serviceWorker
+      .register('sw.js')
+      .then(r => console.log('Available Offline'))
+      .catch(e => console.log.bind(console));
+})();
