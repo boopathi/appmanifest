@@ -8,7 +8,7 @@ export default function attr_link_sizes ({sizesStr, logger: _logger}) {
 
   const logger = _logger("icons", "image_sizes", "attr_link_sizes");
 
-  const sizesArray = sizesStr.split(/\s/);
+  const sizesArray = sizesStr.split(/\s/).filter(size => String.prototype.trim.call(size) !== "");
   const sizesSet = new Set(sizesArray);
   if (sizesSet.size < sizesArray.length)
     logger.warn(`Duplicate entities in sizes - ${sizesArray}`);
@@ -17,20 +17,26 @@ export default function attr_link_sizes ({sizesStr, logger: _logger}) {
     .filter(size => {
       if (size === "any") return true;
       let sizeEntities = size.split(/x|X/);
+
+      if (sizeEntities.length !== 2) {
+        logger.error(`Ignoring size - "${size}" - Parsing failed`);
+        return false;
+      }
+
       if (sizeEntities[0][0] === '0') {
-        logger.warn(`Ignoring size. Width starts with 0 in ${size}`);
+        logger.error(`Ignoring size. Width starts with 0 in ${size}`);
         return false;
       }
       if (sizeEntities[1][0] === '0') {
-        logger.warn(`Ignoring size. Height starts with 0 in ${size}`);
+        logger.error(`Ignoring size. Height starts with 0 in ${size}`);
         return false;
       }
       if (!isNonNegativeInteger(sizeEntities[0])) {
-        logger.warn(`Ignoring size. Width should be a non negative integer in ${size}`);
+        logger.error(`Ignoring size. Width should be a non negative integer in ${size}`);
         return false;
       }
       if (!isNonNegativeInteger(sizeEntities[1])) {
-        logger.warn(`Ignoring size. Height should be a non negative integer in ${size}`);
+        logger.error(`Ignoring size. Height should be a non negative integer in ${size}`);
         return false;
       }
       return true;

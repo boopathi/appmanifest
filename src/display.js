@@ -48,6 +48,6 @@ export default function display ({manifest, logger: _logger}) {
   }
 
   // ignoring step 3, 4, 5
-  logger.warn(`Assuming the display mode provided "${trimmedValue}" is supported by your browser`);
+  logger.log(`Assuming the display mode provided "${trimmedValue}" is supported by your browser`);
   return trimmedValue;
 }
