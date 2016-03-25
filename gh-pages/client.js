@@ -1,3 +1,4 @@
+// https://www.w3.org/TR/appmanifest/#example-manifest
 var sampleJson = {
   "lang": "en",
   "dir": "ltr",
