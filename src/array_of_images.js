@@ -62,9 +62,7 @@ export default function array_of_images ({key, manifest, manifestUrl, logger: _l
       const type = image_type({image, logger: _logger, key});
 
       // step 3.3.6
-      if (typeof type === "undefined")
-        logger.error(`${imgstr} - type parsing failed`);
-      else
+      if (typeof type !== "undefined")
         resultImage.type = type;
 
       // step 3.3.7

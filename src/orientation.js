@@ -55,6 +55,6 @@ ${OrientationLockTypeEnum.toString()}`);
   }
 
   // step 5
-  logger.warn(`Assuming the combination of display mode ${display} and orientation ${result} is supported by your browser`);
+  logger.log(`Assuming the combination of display mode ${display} and orientation ${result} is supported by your browser`);
   return result;
 }

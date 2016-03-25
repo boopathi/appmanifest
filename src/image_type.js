@@ -13,7 +13,7 @@ export default function image_type ({image, logger: _logger, key}) {
   // step 1
   const descriptor = Object.getOwnPropertyDescriptor(image, "type");
   if (typeof descriptor === "undefined") {
-    logger.warn(`image type is empty.`);
+    logger.warn(`image type is not defined for "${image.src}"`);
     // step 3.2
     return void 0;
   }

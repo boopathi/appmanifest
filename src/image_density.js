@@ -11,7 +11,7 @@ export default function image_density ({image, logger: _logger, key}) {
   // step 1
   const descriptor = Object.getOwnPropertyDescriptor(image, "density");
   if (typeof descriptor === "undefined") {
-    logger.warn(`image density is empty.`);
+    logger.warn(`image density is not defined for "${image.src}"`);
     // step 1.0
     return false;
   }

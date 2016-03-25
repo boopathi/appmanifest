@@ -16,7 +16,7 @@ export default function image_sizes ({image, logger: _logger, key}) {
   // step 2
   const descriptor = Object.getOwnPropertyDescriptor(image, "sizes");
   if (typeof descriptor === "undefined") {
-    logger.warn(`image sizes is empty.`);
+    logger.error(`image sizes is not defined for "${image.src}"`);
     // step 4.2
     return void 0;
   }
