@@ -1,5 +1,3 @@
-import {URL} from 'whatwg-url';
-
 export default function same_origin (A, B) {
   // TODO:
   // spec - https://html.spec.whatwg.org/#same-origin

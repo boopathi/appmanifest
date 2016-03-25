@@ -11,13 +11,19 @@ const header = (s) => {
 export default function consoleLogger(...title) {
   return {
     warn(...args) {
+      /* eslint-disable no-console */
       console.warn(header(...title), ...args);
+      /* eslint-enable */
     },
     error(...args) {
+      /* eslint-disable no-console */
       console.error(header(...title), ...args);
+      /* eslint-enable */
     },
     log(...args) {
+      /* eslint-disable no-console */
       console.log(header(...title), ...args);
-    },
+      /* eslint-enable */
+    }
   };
 }

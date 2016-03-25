@@ -69,7 +69,7 @@ export default function manifestParser (opts) {
   // TODO
   // step 9
   // lang
-  // processed.language = lang({manifest, })
+  processed.language = lang({manifest, logger: _logger});
 
   // step 10
   // short_name

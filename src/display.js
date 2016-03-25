@@ -33,11 +33,15 @@ export default function display ({manifest, logger: _logger}) {
   const supported = Object.keys(displayModes).indexOf(trimmedValue) !== -1;
   if (type !== "string" || !supported) {
     // step 2.1
-    if (type !== "undefined" && type !== "string")
-      logger.warn(`Type ${type} is not supported`);
+    if (type !== "undefined" && type !== "string") {
+      logger.warn(`Type ${type} is not supported. Using defaultDisplayMode - browser`);
+      return "browser";
+    }
     // step 2.2
-    if (!supported)
+    if (!supported) {
       logger.error(`display mode is not supported. Using defaultDisplayMode - browser`);
+      return "browser";
+    }
     // step 2.3
     // http://w3c.github.io/manifest/#dfn-fallback-display-mode
     return "browser";

@@ -4,6 +4,12 @@ Validate web app manifest (http://w3c.github.io/manifest)
 
 \* Tries to follow the Spec as it is (as much as possible)
 
+Try it online -
+
+https://boopathi.in/appmanifest/
+
+This project is still under active development. Ideas and contributions welcome :)
+
 ## Install
 
 ```
@@ -56,9 +62,13 @@ const parse = require('appmanifest').manifestParser;
 
 1. You can bundle this with webpack / browserify
 2. Generate your dist - `npm run dist`
-3. Get it from CDN - https://npmcdn.com/appmanifest@latest/dist/appmanifest.min.js
+3. Get it from CDN - https://npmcdn.com/appmanifest@latest/dist/manifest-parser.min.js
 
-The library when obtained as a built bundle, exports UMD with `AppManifest` as the name.
+The library when obtained as a built bundle, exports UMD with `ManifestParser` as the name.
+
+Note:
+
+If you're using the cdn URL, you need to use `ManifestParser.default({})`;
 
 ## Features
 
