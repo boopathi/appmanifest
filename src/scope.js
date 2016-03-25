@@ -39,20 +39,20 @@ export default function scope ({manifest, manifestUrl, documentUrl, start_url, l
     scopeUrl = new URL(value, manifestUrl);
   } catch(e) {
     // step 5
-    logger.warn(`Failed to parse url to get scope - ${manifestUrl} .. ${value}`);
+    logger.error(`Failed to parse url to get scope - ${manifestUrl} .. ${value}`);
     return void 0;
   }
 
   // step 6
   // same-origin policy check
   if (!same_origin(scopeUrl, new URL(documentUrl))) {
-    logger.warn(`scope must be the same-origin as documentUrl of the application context`);
+    logger.error(`scope must be the same-origin as documentUrl of the application context`);
     return void 0;
   }
 
   // step 7
   if (!within_scope({scopeUrl, targetUrl: start_url, logger: _logger})) {
-    logger.warn(`startUrl is not within scope of the navigation scope`);
+    logger.error(`startUrl is not within the navigation scope`);
     return void 0;
   }
 

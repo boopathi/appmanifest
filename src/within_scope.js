@@ -30,7 +30,7 @@ export default function within_scope({targetUrl, scopeUrl, logger: _logger}) {
     logger.error(`targetUrl("${targetUrl}") must be the same origin as scopeUrl("${scopeUrl}")`);
     return false;
   }
-  if (!targetUrl.pathname.startswith(scopeUrl)) {
+  if (!targetUrl.pathname.startsWith(scopeUrl.pathname)) {
     logger.error(`targetUrl("${targetUrl}") must be under the scope of scopeUrl("${scopeUrl}")`);
     return false;
   }

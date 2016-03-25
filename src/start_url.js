@@ -35,7 +35,7 @@ export default function start_url ({manifest, manifestUrl, documentUrl, logger: 
     url = new URL(value, manifestUrl);
   } catch (e) {
     // step 5
-    logger.error(`Failed to parse URL to get start_url path - ${manifest.json} .. ${value}
+    logger.error(`Failed to parse URL to get start_url path - ${manifestUrl} .. ${value}
       Using documentUrl as start_url - ${documentUrl}`);
     return new URL(documentUrl);
   }
