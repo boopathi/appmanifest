@@ -1,3 +1,39 @@
+var sampleJson = {
+  "lang": "en",
+  "dir": "ltr",
+  "name": "Super Racer 2000",
+  "short_name": "Racer2K",
+  "icons": [{
+        "src": "icon/lowres",
+        "sizes": "64x64",
+        "type": "image/webp"
+      }, {
+        "src": "icon/hd_small",
+        "sizes": "64x64"
+      }, {
+        "src": "icon/hd_hi",
+        "sizes": "128x128",
+        "density": 2
+      }],
+  "splash_screens": [{
+        "src": "splash/lowres",
+        "sizes": "320x240"
+      }, {
+        "src": "splash/hd_small",
+        "sizes": "1334x750"
+      }, {
+        "src": "splash/hd_hi",
+        "sizes": "1920x1080",
+        "density": 3
+      }],
+  "scope": "/racer/",
+  "start_url": "/racer/start.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "aliceblue",
+  "background_color": "red"
+};
+
 function webWorkerMiddlewareFactory (scriptUrl) {
   'use strict';
   let dispatch = null;
@@ -34,6 +70,8 @@ function webWorkerMiddlewareFactory (scriptUrl) {
         return state;
       case 'MANIFEST_RESULT':
         return state.concat(action.data);
+      case 'EDITOR_GET_ERROR':
+        return state.concat(action.data);
       default:
         return state;
     }
@@ -54,48 +92,51 @@ function webWorkerMiddlewareFactory (scriptUrl) {
   const editor = new JSONEditor(manifestJson, {
     mode: "code",
     onChange: function() {
-      let json;
-      try {
-        json = editor.get();
-      } catch (e) {
-        // People are going to hate me for this
-        resultLogs.innerHTML = "<ul><li class=error>ERROR PARSING JSON</li></ul>";
-        ga('send', 'exception', {
-          exDescription: e.name,
-          exFatal: false
-        });
-        return;
-      }
-      store.dispatch({
-        type: 'MANIFEST_JSON',
-        data: {
-          manifest: JSON.stringify(json),
-          manifestUrl: 'https://www.example.com/manifest.json',
-          documentUrl: 'https://www.example.com'
-        },
-        worker: true
-      });
+      store.dispatch(createParseAction());
     }
   });
-  editor.set({});
+  editor.set(sampleJson);
 
   const resultEditor = new JSONEditor(resultJson, {
     mode: 'code'
   });
 
-  submit.addEventListener('click', function(e) {
-    e.preventDefault();
-    ga('send', 'event', 'RunButton', 'run');
-    store.dispatch({
+  const createParseAction = function () {
+    let json;
+    try {
+      json = editor.get();
+    } catch (e) {
+      ga('send', 'exception', {
+        exDescription: e.name,
+        exFatal: false
+      });
+      return {
+        type: 'EDITOR_GET_ERROR',
+        data: {
+          errors: [e.message]
+        }
+      }
+    }
+    return {
       type: 'MANIFEST_JSON',
       data: {
-        manifest: JSON.stringify(editor.get()),
-        manifestUrl: 'https://example.com/manifest.json',
-        documentUrl: 'https://example.com/'
+        manifest: JSON.stringify(json),
+        manifestUrl: 'https://www.example.com/manifest.json',
+        documentUrl: 'https://www.example.com'
       },
       // this is how I understand an action that needs to be sent to worker
       worker: true
-    });
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    store.dispatch(createParseAction());
+  });
+
+  submit.addEventListener('click', function(e) {
+    e.preventDefault();
+    ga('send', 'event', 'RunButton', 'run');
+    store.dispatch(createParseAction());
   });
 
   // the cheap ass diff
@@ -113,9 +154,9 @@ function webWorkerMiddlewareFactory (scriptUrl) {
 
     internalDOMState.nResults++;
     let result = state[state.length-1];
-    result.errors.forEach(e => r.appendChild(createLog('error', e)));
-    result.warnings.forEach(w => r.appendChild(createLog('warning', w)));
-    result.logs.forEach(l => r.appendChild(createLog('info', l)));
+    Array.isArray(result.errors) && result.errors.forEach(e => r.appendChild(createLog('error', e)));
+    Array.isArray(result.warnings) && result.warnings.forEach(w => r.appendChild(createLog('warning', w)));
+    Array.isArray(result.logs) && result.logs.forEach(l => r.appendChild(createLog('info', l)));
     resultLogs.innerHTML = "";
     resultLogs.appendChild(r);
 
