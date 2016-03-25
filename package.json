@@ -1,12 +1,13 @@
 {
   "name": "appmanifest",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib",
     "watch": "babel src -d lib -w",
-    "dist": "webpack --config webpack.config.js",
+    "dist": "webpack --config webpack.config.js --env.prod",
+    "dist-watch": "webpack --config webpack.config.js --watch --env.dev",
     "gh-pages": "babel gh-pages/ -d gh-pages-dist -w",
     "lint": "eslint src/*.js",
     "test": "mocha"
@@ -35,6 +36,6 @@
     "eslint": "^2.4.0",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
-    "webpack": "^1.12.14"
+    "webpack": "^2.1.0-beta.4"
   }
 }
