@@ -1,4 +1,4 @@
-var VERSION = '2';
+var VERSION = '3';
 
 var CACHE_NAME = 'appmanifest-deps-v' + VERSION;
 
