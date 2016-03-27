@@ -70,9 +70,9 @@ function webWorkerMiddlewareFactory (scriptUrl) {
       case 'MANIFEST_JSON':
         return state;
       case 'MANIFEST_RESULT':
-        return state.concat(action.data);
+        return action.data;
       case 'EDITOR_GET_ERROR':
-        return state.concat(action.data);
+        return action.data;
       default:
         return state;
     }
@@ -80,7 +80,7 @@ function webWorkerMiddlewareFactory (scriptUrl) {
 
   let store = Redux.createStore(
     reducer,
-    [],
+    {},
     Redux.applyMiddleware(webWorkerMiddlewareFactory('gh-pages/worker.js'))
   );
 
@@ -140,28 +140,19 @@ function webWorkerMiddlewareFactory (scriptUrl) {
     store.dispatch(createParseAction());
   });
 
-  // the cheap ass diff
-  // number of results
-  let internalDOMState = {
-    nResults: 0
-  };
-
   store.subscribe(function update() {
     let r = document.createElement('ul');
 
     // shouldComponentUpdate
     let state = store.getState();
-    if (internalDOMState.nResults === state.length) return;
 
-    internalDOMState.nResults++;
-    let result = state[state.length-1];
-    Array.isArray(result.errors) && result.errors.forEach(e => r.appendChild(createLog('error', e)));
-    Array.isArray(result.warnings) && result.warnings.forEach(w => r.appendChild(createLog('warning', w)));
-    Array.isArray(result.logs) && result.logs.forEach(l => r.appendChild(createLog('info', l)));
+    Array.isArray(state.errors) && state.errors.forEach(e => r.appendChild(createLog('error', e)));
+    Array.isArray(state.warnings) && state.warnings.forEach(w => r.appendChild(createLog('warning', w)));
+    Array.isArray(state.logs) && state.logs.forEach(l => r.appendChild(createLog('info', l)));
     resultLogs.innerHTML = "";
     resultLogs.appendChild(r);
 
-    resultEditor.set(result.result);
+    if (state.result) resultEditor.set(state.result);
 
   });
 
