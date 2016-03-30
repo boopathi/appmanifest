@@ -11,8 +11,6 @@ var resources = [
   'gh-pages/client.js',
   'gh-pages/worker.js',
   'gh-pages/styles.css',
-  'sw.js',
-  'gh-pages/sw-toolbox.js',
 
   'https://npmcdn.com/jsoneditor@5.2.0/dist/jsoneditor.min.css',
   'https://npmcdn.com/redux@3.3.1/dist/redux.min.js',
@@ -28,7 +26,7 @@ self.addEventListener('activate', function(event) {
 });
 
 
-toolbox.router.get('gh-pages/*', toolbox.cacheFirst);
-toolbox.router.get('dist/*', toolbox.cacheFirst);
-toolbox.router.get('/*', toolbox.cacheFirst, {origin: 'https://npmcdn.com'});
-toolbox.router.get('/*', toolbox.cacheFirst);
+toolbox.router.get('gh-pages/*', toolbox.fastest);
+toolbox.router.get('dist/*', toolbox.fastest);
+toolbox.router.get('/*', toolbox.fastest, {origin: 'https://npmcdn.com'});
+toolbox.router.get('/*', toolbox.fastest);
