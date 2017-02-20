@@ -1,5 +1,7 @@
 # appmanifest
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/boopathi/appmanifest.svg)](https://greenkeeper.io/)
+
 Validate web app manifest (http://w3c.github.io/manifest)
 
 \* Tries to follow the Spec as it is (as much as possible)
